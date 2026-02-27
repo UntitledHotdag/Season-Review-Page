@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Shuriken, HalftoneBackground, SpeedLines } from './NinjaDecorations';
 
 const VOLLEYBALL_IMAGE = 'https://images.unsplash.com/photo-1765109380575-ba33954b43b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xsZXliYWxsJTIwc3Bpa2UlMjBhY3Rpb24lMjBpbmRvb3IlMjBzcG9ydHxlbnwxfHx8fDE3NzE5NTEwODR8MA&ixlib=rb-4.1.0&q=80&w=1080';
@@ -54,15 +54,15 @@ export function NameInputPage({ onNext }: Props) {
             <HalftoneBackground />
             <p className="font-['Bangers'] text-[#F45207] tracking-widest relative z-10 text-[0.65rem] sm:text-[0.75rem] md:text-xs"
               style={{ letterSpacing: '0.25em' }}>
-              TAIWAN VOLLEYBALL SUPER LEAGUE 2024-25
+              TAIWAN PROFESSIONAL VOLLEYBALL LEAGUE 2025-26
             </p>
             <h1 className="font-['Bangers'] text-white relative z-10 text-2xl sm:text-[2.5rem] md:text-[3rem] leading-none"
               style={{ textShadow: '4px 4px 0px #F45207, -2px -2px 0px #F45207' }}>
-              台北東電力
+              臺北伊斯特
             </h1>
             <h2 className="font-['Bangers'] text-[#F45207] relative z-10 text-sm sm:text-base md:text-lg"
               style={{ textShadow: '2px 2px 0px #000' }}>
-              TAIPEI EASTERN POWER
+              TAIPEI EASTER POWER
             </h2>
             <p className="font-['Bangers'] text-yellow-400 relative z-10 mt-1 text-sm sm:text-base"
               style={{ letterSpacing: '0.1em' }}>
@@ -143,7 +143,7 @@ export function NameInputPage({ onNext }: Props) {
 
         {/* Season label */}
         <p className="mt-6 font-['Bangers'] text-white/30 text-center text-xs sm:text-sm" style={{ letterSpacing: '0.1em' }}>
-          2024-25 SEASON · 18 GAMES · CHAMPION ????
+          2025-26 SEASON · 48 GAMES · CHAMPION ????
         </p>
       </div>
     </div>

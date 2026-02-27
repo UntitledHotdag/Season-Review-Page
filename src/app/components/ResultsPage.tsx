@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import type { ReactNode } from 'react';
 import { GAMES, PLAYERS, PlayerStat } from '../data/seasonData';
 import { TeamBanner, Shuriken, HalftoneBackground } from './NinjaDecorations';
@@ -50,7 +50,7 @@ function downloadResultAsText(
 ) {
   const attended = games.filter(g => selectedGames.includes(g.id));
   const wins = attended.filter(g => g.result === 'win').length;
-  let text = `🏐 台北東電力 2024-25 球季回顧\n`;
+  let text = `🏐 臺北伊斯特 2025-26 球季回顧\n`;
   text += `球迷：${userName}\n`;
   text += `觀賽場次：${attended.length} 場\n`;
   text += `勝場：${wins} 勝 ${attended.length - wins} 敗\n`;
@@ -70,7 +70,7 @@ function downloadResultAsText(
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${userName}_東電力_球季回顧.txt`;
+  a.download = `${userName}_臺北伊斯特_球季回顧.txt`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -242,7 +242,7 @@ export function ResultsPage({ userName, selectedGames, onBack }: Props) {
             忍者球迷 {userName}！
           </p>
           <p className="font-['Bangers'] text-[#F45207] text-center text-sm sm:text-base">
-            你今季陪東電力打了 {attended.length} 場！
+            你本季陪臺北伊斯特打了 {attended.length} 場！
           </p>
           {winRate >= 60 && (
             <p className="font-['Bangers'] text-white/60 text-center mt-1 text-sm sm:text-base">

@@ -75,15 +75,15 @@ export function TeamBanner({ subtitle }: { subtitle?: string }) {
         <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1 flex-wrap">
           <Shuriken className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-300 flex-shrink-0" />
           <span className="font-['Bangers'] text-yellow-300 tracking-widest text-xs sm:text-sm md:text-base" style={{ letterSpacing: '0.2em' }}>
-            TAIWAN VOLLEYBALL SUPER LEAGUE
+            TAIWAN PROFESSIONAL VOLLEYBALL LEAGUE
           </span>
           <Shuriken className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-300 flex-shrink-0" />
         </div>
         <h1 className="font-['Bangers'] text-white tracking-wide text-xl sm:text-2xl md:text-3xl lg:text-[2.4rem] leading-none" style={{ textShadow: '3px 3px 0px #000, -1px -1px 0px #000' }}>
-          台北東電力
+          臺北伊斯特
         </h1>
         <h2 className="font-['Bangers'] text-yellow-300 tracking-widest text-sm sm:text-base md:text-lg" style={{ textShadow: '2px 2px 0px #000' }}>
-          TAIPEI EASTERN POWER
+          TAIPEI EASTER POWER
         </h2>
         {subtitle && (
           <p className="mt-2 font-['Noto_Sans_TC'] text-white/90 text-xs sm:text-sm border-t border-white/30 pt-2 px-2">{subtitle}</p>

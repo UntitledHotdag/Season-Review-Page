@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { GAMES, MONTHS } from '../data/seasonData';
 import { TeamBanner, Shuriken, HalftoneBackground } from './NinjaDecorations';
 import { ChevronDown, ChevronRight, Check, Trophy } from 'lucide-react';

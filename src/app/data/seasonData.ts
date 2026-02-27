@@ -1,3 +1,5 @@
+import tpvlMatches from './tpvlMatches.json';
+
 export interface PlayerStat {
   playerId: string;
   name: string;
@@ -26,7 +28,8 @@ export interface Game {
   playerStats: PlayerStat[];
 }
 
-export const PLAYERS = [
+/** Fallback roster when TPVL JSON is not used */
+const STATIC_PLAYERS = [
   { id: 'p1', name: '陳俊宏', nameEn: 'Chen Jun-Hong', number: 1, position: 'OH' },
   { id: 'p2', name: '林大偉', nameEn: 'Lin Da-Wei', number: 7, position: 'OP' },
   { id: 'p3', name: '張明哲', nameEn: 'Zhang Ming-Zhe', number: 11, position: 'MB' },
@@ -54,7 +57,7 @@ function makeStats(
     [atk6, blk6, srv6],
     [0, 0, 0],
   ];
-  return PLAYERS.map((p, i) => ({
+  return STATIC_PLAYERS.map((p, i) => ({
     playerId: p.id,
     name: p.name,
     nameEn: p.nameEn,
@@ -68,7 +71,8 @@ function makeStats(
   }));
 }
 
-export const GAMES: Game[] = [
+/** Fallback games when TPVL JSON is not used */
+const STATIC_GAMES: Game[] = [
   // OCTOBER 2024
   {
     id: 'g01', date: '2024-10-05', monthKey: '2024-10', monthLabel: '10月 October',
@@ -203,8 +207,21 @@ export const GAMES: Game[] = [
   },
 ];
 
-export const MONTHS = Array.from(new Set(GAMES.map(g => g.monthKey))).map(key => ({
+type TpvlPayload = {
+  games?: Game[];
+  players?: { id: string; name: string; nameEn: string; number: number; position: string }[];
+};
+const tpvl = tpvlMatches as TpvlPayload;
+const useTpvl =
+  Array.isArray(tpvl.games) && tpvl.games.length > 0;
+
+export const GAMES: Game[] = useTpvl ? tpvl.games! : STATIC_GAMES;
+export const PLAYERS = useTpvl && Array.isArray(tpvl.players) && tpvl.players.length > 0
+  ? tpvl.players
+  : STATIC_PLAYERS;
+
+export const MONTHS = Array.from(new Set(GAMES.map((g) => g.monthKey))).map((key) => ({
   key,
-  label: GAMES.find(g => g.monthKey === key)!.monthLabel,
-  games: GAMES.filter(g => g.monthKey === key),
+  label: GAMES.find((g) => g.monthKey === key)!.monthLabel,
+  games: GAMES.filter((g) => g.monthKey === key),
 }));

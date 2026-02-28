@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Shuriken, HalftoneBackground, SpeedLines } from './NinjaDecorations';
 
-const VOLLEYBALL_IMAGE = 'https://images.unsplash.com/photo-1765109380575-ba33954b43b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xsZXliYWxsJTIwc3Bpa2UlMjBhY3Rpb24lMjBpbmRvb3IlMjBzcG9ydHxlbnwxfHx8fDE3NzE5NTEwODR8MA&ixlib=rb-4.1.0&q=80&w=1080';
+const base = ((import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/').replace(/\/$/, '') || '';
+const VOLLEYBALL_IMAGE = `${base}/team-huddle.png`;
 
 interface Props {
   onNext: (name: string) => void;
@@ -26,7 +27,7 @@ export function NameInputPage({ onNext }: Props) {
       <div className="relative overflow-hidden min-h-[55vw] sm:min-h-[280px] md:min-h-[320px] lg:max-h-[340px]">
         <img
           src={VOLLEYBALL_IMAGE}
-          alt="Volleyball action"
+          alt="Team huddle"
           className="absolute inset-0 w-full h-full object-cover object-center"
           style={{ filter: 'brightness(0.35) saturate(1.5)' }}
         />

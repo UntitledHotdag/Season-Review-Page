@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { GAMES, PLAYERS, PlayerStat } from '../data/seasonData';
 import { TeamBanner, Shuriken, HalftoneBackground } from './NinjaDecorations';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Download, RotateCcw, Trophy, Zap, Shield, Target } from 'lucide-react';
+import { RotateCcw, Trophy, Zap, Shield, Target } from 'lucide-react';
 
 interface Props {
   userName: string;
@@ -40,40 +40,6 @@ const POSITION_COLORS: Record<string, string> = {
   S: '#06d6a0',
   L: '#118ab2',
 };
-
-function downloadResultAsText(
-  userName: string,
-  selectedGames: string[],
-  games: typeof GAMES,
-  aggregated: AggregatedPlayerStat[],
-  winRate: number
-) {
-  const attended = games.filter(g => selectedGames.includes(g.id));
-  const wins = attended.filter(g => g.result === 'win').length;
-  let text = `🏐 臺北伊斯特 2025-26 球季回顧\n`;
-  text += `球迷：${userName}\n`;
-  text += `觀賽場次：${attended.length} 場\n`;
-  text += `勝場：${wins} 勝 ${attended.length - wins} 敗\n`;
-  text += `勝率：${winRate.toFixed(1)}%\n\n`;
-  text += `=== 球員數據 ===\n`;
-  aggregated.forEach(p => {
-    text += `\n#${p.number} ${p.name} (${p.position})\n`;
-    text += `  總得分: ${p.totalPoints}  攻擊: ${p.totalAttacks}  攔網: ${p.totalBlocks}  發球: ${p.totalServes}\n`;
-    text += `  出場局數: ${p.totalSets}  平均每局: ${p.avgPointsPerSet.toFixed(1)} 分\n`;
-  });
-  text += `\n=== 觀賽比賽 ===\n`;
-  attended.forEach(g => {
-    text += `${g.date} vs ${g.opponentShort} ${g.score} (${g.result === 'win' ? '勝' : '敗'})\n`;
-  });
-
-  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${userName}_臺北伊斯特_球季回顧.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
-}
 
 function StatCard({ label, value, sublabel, color = '#F45207', icon }: {
   label: string; value: string | number; sublabel?: string; color?: string; icon?: ReactNode;
@@ -381,29 +347,16 @@ export function ResultsPage({ userName, selectedGames, onBack }: Props) {
 
       {/* Sticky bottom bar - safe area, touch targets */}
       <div
-        className="fixed bottom-0 left-0 right-0 border-t-4 border-black px-3 py-3 sm:px-4 flex flex-row gap-2 sm:gap-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+        className="fixed bottom-0 left-0 right-0 border-t-4 border-black px-3 py-3 sm:px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
         style={{ background: '#0f0f0f', zIndex: 50 }}
       >
         <button
           onClick={onBack}
-          className="flex-1 min-h-[48px] border-4 border-[#F45207] font-['Bangers'] text-[#F45207] py-3 flex items-center justify-center gap-2 active:opacity-70 text-sm sm:text-base rounded-none"
+          className="w-full min-h-[48px] border-4 border-[#F45207] font-['Bangers'] text-[#F45207] py-3 flex items-center justify-center gap-2 active:opacity-70 text-sm sm:text-base rounded-none"
           style={{ background: 'transparent' }}
         >
           <RotateCcw className="w-4 h-4 flex-shrink-0" />
           重新選擇 BACK
-        </button>
-        <button
-          onClick={() => downloadResultAsText(userName, selectedGames, GAMES, aggregated, winRate)}
-          className="min-h-[48px] border-4 border-black font-['Bangers'] text-black py-3 px-4 flex items-center justify-center gap-2 relative overflow-hidden active:translate-x-0.5 active:translate-y-0.5 text-sm sm:text-base flex-[2] rounded-none"
-          style={{ background: '#F45207', boxShadow: '4px 4px 0px #000' }}
-          onMouseDown={e => (e.currentTarget.style.boxShadow = '1px 1px 0px #000')}
-          onMouseUp={e => (e.currentTarget.style.boxShadow = '4px 4px 0px #000')}
-          onTouchStart={e => (e.currentTarget.style.boxShadow = '1px 1px 0px #000')}
-          onTouchEnd={e => (e.currentTarget.style.boxShadow = '4px 4px 0px #000')}
-        >
-          <HalftoneBackground />
-          <Download className="w-4 h-4 relative z-10" />
-          <span className="relative z-10">下載成績 DOWNLOAD</span>
         </button>
       </div>
     </div>

@@ -63,7 +63,7 @@ export function NameInputPage({ onNext }: Props) {
             </h1>
             <h2 className="font-['Bangers'] text-[#F45207] relative z-10 text-sm sm:text-base md:text-lg"
               style={{ textShadow: '2px 2px 0px #000' }}>
-              TAIPEI EASTER POWER
+              TAIPEI EAST POWER
             </h2>
             <p className="font-['Bangers'] text-yellow-400 relative z-10 mt-1 text-sm sm:text-base"
               style={{ letterSpacing: '0.1em' }}>

@@ -83,7 +83,7 @@ export function TeamBanner({ subtitle }: { subtitle?: string }) {
           臺北伊斯特
         </h1>
         <h2 className="font-['Bangers'] text-yellow-300 tracking-widest text-sm sm:text-base md:text-lg" style={{ textShadow: '2px 2px 0px #000' }}>
-          TAIPEI EASTER POWER
+          TAIPEI EAST POWER
         </h2>
         {subtitle && (
           <p className="mt-2 font-['Noto_Sans_TC'] text-white/90 text-xs sm:text-sm border-t border-white/30 pt-2 px-2">{subtitle}</p>
